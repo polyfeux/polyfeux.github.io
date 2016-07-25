@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>What color is it?</title>
+</head>
+<style type="text/css" media="screen">
+  body {
+    background-color: #ffffff;
+    -webkit-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  #wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-family: 'Arial Narrow';
+    font-size: 60px;
+  }
+
+  #hex-color {
+    font-size: 20px;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <div id="wrapper">
+    <div id="clock"></div>
+    <br/>
+    <div id="hex-color"></div>
+  </div>
+  <script>
+    function makebinary(n) {
+      return (n < 10 ? (n = 0 + "" + n) : n)
+    }
+
+    function farbigeUhr() {
+      var d = new Date();
+
+      // von dem einen Datum jeweils nur die Stunden/Minuten/Sekunden verwenden
+      // und wenn einstellig, dann zweistellig machen
+      var hours = makebinary(d.getHours());
+      var mins = makebinary(d.getMinutes());
+      var secs = makebinary(d.getSeconds());
+
+      document.getElementById("clock").innerHTML = "# " + hours + " " + mins + " " + secs;
+      document.body.style.background = "#" + hours + mins + secs;
+    }
+
+    var d = setInterval(function () {
+      farbigeUhr()
+    }, 200);
+  </script>
+</body>
+
+</html>
